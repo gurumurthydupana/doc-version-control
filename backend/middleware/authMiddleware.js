@@ -18,3 +18,10 @@ export const verifyJWT = (req, res, next) => {
     return res.status(401).json({ message: "Invalid Token" });
   }
 };
+
+export const requireEditor = (req, res, next) => {
+  if (req.user.role !== "editor") {
+    return res.status(403).json({ message: "Editor role required for this action" });
+  }
+  next();
+};
