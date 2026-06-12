@@ -37,8 +37,6 @@ Backend API: https://doc-version-control-backend.onrender.com
 | Deployment         | Vercel, Render                                             |
 | AI Integration     | OpenAI API (Optional)                                      |
 
-📂 Project Structure
-
 doc-version-control/
 │
 ├── backend/
