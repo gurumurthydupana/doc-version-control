@@ -2,15 +2,11 @@
 
 A modern MERN stack application that combines document version control with semantic change tracking. Users can create documents, save versions, compare changes visually, view version history, and roll back to previous versions with secure role-based access control.
 
----
-
 ## 🚀 Live Demo
 
-**Frontend:** https://YOUR-VERCEL-URL.vercel.app
+Frontend: https://doc-version-control-one.vercel.app
 
-**Backend API:** https://doc-version-control-backend.onrender.com
-
----
+Backend API: https://doc-version-control-backend.onrender.com
 
 ## ✨ Features
 
@@ -29,8 +25,6 @@ A modern MERN stack application that combines document version control with sema
 * Cloud Deployment with Vercel & Render
 * OpenAI Integration Ready for Semantic Version Summaries
 
----
-
 ## 🛠️ Tech Stack
 
 | Layer              | Technologies                                               |
@@ -43,11 +37,8 @@ A modern MERN stack application that combines document version control with sema
 | Deployment         | Vercel, Render                                             |
 | AI Integration     | OpenAI API (Optional)                                      |
 
----
-
 ## 📂 Project Structure
 
-```text
 doc-version-control/
 │
 ├── backend/
@@ -69,9 +60,6 @@ doc-version-control/
 │   │   └── utils/
 │
 └── README.md
-```
-
----
 
 ## 🔐 Authentication & Authorization
 
@@ -92,8 +80,6 @@ The application uses JWT-based authentication.
 * Compare Versions
 * View Version History
 * Read-Only Access
-
----
 
 ## 🔄 Version Control Features
 
@@ -118,105 +104,87 @@ Restore any previous version while preserving complete version history.
 
 View document history chronologically with timestamps and author information.
 
----
-
 ## ⚙️ Installation
 
 ### Clone Repository
 
-```bash
 git clone https://github.com/gurumurthydupana/doc-version-control.git
+
 cd doc-version-control
-```
 
 ### Install Backend Dependencies
 
-```bash
 cd backend
+
 npm install
-```
 
 ### Install Frontend Dependencies
 
-```bash
 cd ../frontend
-npm install
-```
 
----
+npm install
 
 ## 🔧 Backend Environment Variables
 
-Create a `.env` file inside the `backend` folder.
+Create a `.env` file inside the backend folder.
 
-```env
 MONGO_URI=your_mongodb_connection_string
+
 JWT_SECRET=your_jwt_secret
 
 OPENAI_API_KEY=your_openai_api_key
-OPENAI_MODEL=gpt-4o-mini
-```
 
----
+OPENAI_MODEL=gpt-4o-mini
 
 ## ▶️ Run the Application
 
 ### Backend
 
-```bash
 cd backend
+
 npm run dev
-```
 
 Runs on:
 
-```text
 http://localhost:5000
-```
 
 ### Frontend
 
-```bash
 cd frontend
+
 npm start
-```
 
 Runs on:
 
-```text
 http://localhost:3000
-```
-
----
 
 ## 📡 API Endpoints
 
 ### Authentication
 
-```http
 POST /api/auth/register
+
 POST /api/auth/login
-```
 
 ### Documents
 
-```http
-GET    /api/documents
-POST   /api/documents/create
-GET    /api/documents/:id
-POST   /api/documents/:id/version
-GET    /api/documents/:id/history
-GET    /api/documents/:docId/compare/:v1/:v2
-POST   /api/documents/:docId/rollback/:versionId
-```
+GET /api/documents
 
----
+POST /api/documents/create
+
+GET /api/documents/:id
+
+POST /api/documents/:id/version
+
+GET /api/documents/:id/history
+
+GET /api/documents/:docId/compare/:v1/:v2
+
+POST /api/documents/:docId/rollback/:versionId
 
 ## 🎯 Resume Description
 
 Developed a full-stack document version control platform using the MERN stack featuring document history tracking, visual version comparison, rollback functionality, rich text editing, and role-based access control. Implemented JWT authentication, MongoDB Atlas integration, responsive UI design, and deployed the application using Vercel and Render.
-
----
 
 ## 📈 Key Highlights
 
@@ -229,11 +197,9 @@ Developed a full-stack document version control platform using the MERN stack fe
 * Responsive UI/UX
 * Production-Ready Architecture
 
----
-
 ## 👨‍💻 Author
 
-**Gurumurthy Dupana**
+Gurumurthy Dupana
 
 GitHub: https://github.com/gurumurthydupana
 
