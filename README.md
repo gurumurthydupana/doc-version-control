@@ -1,33 +1,47 @@
 # AI-Powered Document Version Control System
 
-A modern MERN stack application that combines document version control with AI-generated semantic change summaries. Users can create documents, save versions, compare changes visually, view AI-powered summaries, and roll back to previous versions with secure role-based access control.
+A modern MERN stack application that combines document version control with semantic change tracking. Users can create documents, save versions, compare changes visually, view version history, and roll back to previous versions with secure role-based access control.
 
-## 🚀 Features
+---
 
-* JWT Authentication with Editor and Viewer roles
-* AI-powered semantic version summaries using Claude or OpenAI APIs
-* Automatic fallback to rule-based summarization if AI is unavailable
+## 🚀 Live Demo
+
+**Frontend:** https://YOUR-VERCEL-URL.vercel.app
+
+**Backend API:** https://doc-version-control-backend.onrender.com
+
+---
+
+## ✨ Features
+
+* JWT Authentication
+* Role-Based Access Control (Editor & Viewer)
 * Rich Text Editing with TipTap
-* Visual Diff Viewer for comparing any two document versions
-* Version History Timeline with timestamps, authors, and summaries
-* Rollback to previous versions
-* Document Dashboard with document cards
-* Dark Mode support
-* Toast Notifications for actions and errors
-* Responsive Tailwind CSS UI
+* Document Version History
+* Visual Diff Comparison Between Versions
+* Rollback to Previous Versions
+* Version Timeline with Metadata
+* Document Dashboard
+* Dark/Light Theme Support
+* Responsive UI
+* Toast Notifications
+* MongoDB Atlas Integration
+* Cloud Deployment with Vercel & Render
+* OpenAI Integration Ready for Semantic Version Summaries
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer          | Technologies                                               |
-| -------------- | ---------------------------------------------------------- |
-| Frontend       | React, React Router, Tailwind CSS, TipTap, React Hot Toast |
-| Backend        | Node.js, Express.js                                        |
-| Database       | MongoDB, Mongoose                                          |
-| Authentication | JWT, bcrypt                                                |
-| AI             | Anthropic Claude API / OpenAI API                          |
-| Diff Engine    | react-diff-viewer-continued                                |
+| Layer              | Technologies                                               |
+| ------------------ | ---------------------------------------------------------- |
+| Frontend           | React, React Router, Tailwind CSS, TipTap, React Hot Toast |
+| Backend            | Node.js, Express.js                                        |
+| Database           | MongoDB Atlas, Mongoose                                    |
+| Authentication     | JWT, bcryptjs                                              |
+| Version Comparison | react-diff-viewer-continued                                |
+| Deployment         | Vercel, Render                                             |
+| AI Integration     | OpenAI API (Optional)                                      |
 
 ---
 
@@ -35,21 +49,24 @@ A modern MERN stack application that combines document version control with AI-g
 
 ```text
 doc-version-control/
+│
 ├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
 │   ├── models/
 │   ├── routes/
-│   ├── middleware/
 │   ├── utils/
 │   └── server.js
 │
 ├── frontend/
+│   ├── public/
 │   ├── src/
 │   │   ├── api/
 │   │   ├── components/
 │   │   ├── context/
 │   │   ├── pages/
 │   │   └── utils/
-│   └── public/
 │
 └── README.md
 ```
@@ -60,38 +77,21 @@ doc-version-control/
 
 The application uses JWT-based authentication.
 
-### Roles
+### Editor Role
 
-**Editor**
+* Create Documents
+* Edit Documents
+* Save New Versions
+* Compare Versions
+* Rollback Versions
+* View Version History
 
-* Create documents
-* Edit content
-* Save versions
-* Rollback versions
-* Compare versions
+### Viewer Role
 
-**Viewer**
-
-* View documents
-* View version history
-* Compare versions
-* Read-only editor access
-
----
-
-## 🤖 AI-Powered Version Summaries
-
-When a user saves a new version:
-
-1. Previous version content is retrieved.
-2. New version content is compared.
-3. Claude/OpenAI generates a human-readable summary.
-
-Example:
-
-> Added deployment instructions and updated authentication documentation.
-
-If an API key is unavailable, the application automatically falls back to a lightweight rule-based summarizer.
+* View Documents
+* Compare Versions
+* View Version History
+* Read-Only Access
 
 ---
 
@@ -99,20 +99,24 @@ If an API key is unavailable, the application automatically falls back to a ligh
 
 ### Save Version
 
-Creates a new version record with:
+Each version stores:
 
-* Content snapshot
+* Document Content Snapshot
 * Timestamp
-* Author
-* AI summary
+* Author Information
+* Version Metadata
 
 ### Compare Versions
 
-Allows comparison of any two saved versions using a visual diff viewer.
+Compare any two document versions using a visual diff viewer.
 
 ### Rollback
 
-Restore any previous version while preserving version history.
+Restore any previous version while preserving complete version history.
+
+### Version Timeline
+
+View document history chronologically with timestamps and author information.
 
 ---
 
@@ -141,34 +145,33 @@ npm install
 
 ---
 
-## Backend Environment Variables
+## 🔧 Backend Environment Variables
 
-Create a `.env` file inside the backend folder.
+Create a `.env` file inside the `backend` folder.
 
 ```env
-MONGO_URI=mongodb://localhost:27017/doc-version-control
+MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 
-AI_PROVIDER=anthropic
-
-ANTHROPIC_API_KEY=your_key
-ANTHROPIC_MODEL=claude-sonnet-4-6
-
-# OR
-
-OPENAI_API_KEY=your_key
+OPENAI_API_KEY=your_openai_api_key
 OPENAI_MODEL=gpt-4o-mini
 ```
 
 ---
 
-## Run the Application
+## ▶️ Run the Application
 
 ### Backend
 
 ```bash
 cd backend
 npm run dev
+```
+
+Runs on:
+
+```text
+http://localhost:5000
 ```
 
 ### Frontend
@@ -178,16 +181,10 @@ cd frontend
 npm start
 ```
 
-Frontend:
+Runs on:
 
 ```text
 http://localhost:3000
-```
-
-Backend:
-
-```text
-http://localhost:5000
 ```
 
 ---
@@ -196,24 +193,41 @@ http://localhost:5000
 
 ### Authentication
 
-* POST `/api/auth/register`
-* POST `/api/auth/login`
+```http
+POST /api/auth/register
+POST /api/auth/login
+```
 
 ### Documents
 
-* GET `/api/documents`
-* POST `/api/documents/create`
-* GET `/api/documents/:id`
-* POST `/api/documents/:id/version`
-* GET `/api/documents/:id/history`
-* GET `/api/documents/:docId/compare/:v1/:v2`
-* POST `/api/documents/:docId/rollback/:versionId`
+```http
+GET    /api/documents
+POST   /api/documents/create
+GET    /api/documents/:id
+POST   /api/documents/:id/version
+GET    /api/documents/:id/history
+GET    /api/documents/:docId/compare/:v1/:v2
+POST   /api/documents/:docId/rollback/:versionId
+```
 
 ---
 
 ## 🎯 Resume Description
 
-Built an AI-powered document version control platform using the MERN stack with Claude/OpenAI-powered semantic change summaries, visual diff comparison, rich text editing, and JWT-based role management. Implemented version history tracking, rollback functionality, dark mode UI, and secure document access using MongoDB and Express APIs.
+Developed a full-stack document version control platform using the MERN stack featuring document history tracking, visual version comparison, rollback functionality, rich text editing, and role-based access control. Implemented JWT authentication, MongoDB Atlas integration, responsive UI design, and deployed the application using Vercel and Render.
+
+---
+
+## 📈 Key Highlights
+
+* Full-Stack MERN Application
+* JWT Authentication & Authorization
+* Version Control Workflow
+* RESTful API Development
+* MongoDB Atlas Integration
+* Cloud Deployment
+* Responsive UI/UX
+* Production-Ready Architecture
 
 ---
 
@@ -221,8 +235,6 @@ Built an AI-powered document version control platform using the MERN stack with 
 
 **Gurumurthy Dupana**
 
-GitHub:
-https://github.com/gurumurthydupana
+GitHub: https://github.com/gurumurthydupana
 
-LinkedIn:
-https://www.linkedin.com/
+LinkedIn: https://www.linkedin.com/in/YOUR-LINKEDIN-ID
